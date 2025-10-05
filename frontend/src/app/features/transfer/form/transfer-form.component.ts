@@ -64,16 +64,22 @@ export class TransferFormComponent implements OnInit, OnDestroy {
   beneficios: Beneficio[] = [];
 
   ngOnInit(): void {
-    // Carrega a lista de benefícios para popular os selects
+    // Carrega a lista de benefícios ativos para popular os selects
     this.service
       .list()
       .pipe(takeUntil(this.destroy$))
-      .subscribe({ next: (items) => (this.beneficios = items) });
+      .subscribe({
+        next: (items) => {
+          this.beneficios = items.filter((item) => item.ativo !== false);
+          this.ensureValidSelections();
+        }
+      });
 
     this.route.queryParamMap.pipe(takeUntil(this.destroy$)).subscribe((params) => {
       const fromId = Number(params.get('fromId'));
       if (!Number.isNaN(fromId) && fromId > 0) {
         this.form.patchValue({ fromId });
+        this.ensureValidSelections();
       }
     });
   }
@@ -110,5 +116,17 @@ export class TransferFormComponent implements OnInit, OnDestroy {
           this.saving = false;
         }
       });
+  }
+
+  private ensureValidSelections(): void {
+    const { fromId, toId } = this.form.getRawValue();
+
+    if (fromId && !this.beneficios.some((beneficio) => beneficio.id === fromId)) {
+      this.form.patchValue({ fromId: null }, { emitEvent: false });
+    }
+
+    if (toId && !this.beneficios.some((beneficio) => beneficio.id === toId)) {
+      this.form.patchValue({ toId: null }, { emitEvent: false });
+    }
   }
 }
