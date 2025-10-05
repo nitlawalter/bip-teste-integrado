@@ -1,0 +1,48 @@
+mat-card {
+  max-width: 720px;
+  margin: 0 auto;
+  display: block;
+  padding: 24px;
+}
+
+.header {
+  margin-bottom: 24px;
+
+  h1 {
+    margin: 0;
+    font-size: 1.75rem;
+  }
+
+  p {
+    margin: 4px 0 0;
+    color: rgba(0, 0, 0, 0.6);
+  }
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 48px 0;
+}
+
+.form-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+  .full-width {
+    grid-column: 1 / -1;
+  }
+}
+
+.actions {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+
+  button mat-icon {
+    margin-right: 6px;
+  }
+}

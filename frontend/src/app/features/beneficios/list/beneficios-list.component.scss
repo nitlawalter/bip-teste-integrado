@@ -1,0 +1,71 @@
+.overview {
+  margin-bottom: 24px;
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    h1 {
+      margin: 0;
+      font-size: 1.75rem;
+    }
+
+    p {
+      margin: 4px 0 0;
+      color: rgba(0, 0, 0, 0.6);
+    }
+
+    button mat-icon {
+      margin-right: 4px;
+    }
+  }
+
+  .filter-field {
+    width: 100%;
+    margin-top: 16px;
+  }
+}
+
+.table-card {
+  position: relative;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 0;
+}
+
+.table-container {
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
+
+.actions-header,
+.actions-cell {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.actions-cell button {
+  margin-left: 4px;
+}
+
+.status {
+  padding: 4px 12px;
+  border-radius: 12px;
+  background-color: rgba(33, 150, 243, 0.1);
+  color: #1976d2;
+  font-weight: 600;
+}
+
+.status.inactive {
+  background-color: rgba(211, 47, 47, 0.1);
+  color: #d32f2f;
+}

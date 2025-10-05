@@ -1,0 +1,40 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+mat-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.brand {
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+a.active {
+  font-weight: 600;
+}
+
+a[mat-button] {
+  text-transform: none;
+}
+
+main {
+  flex: 1;
+  padding: 24px;
+  background-color: #f5f7fb;
+  overflow: auto;
+}
+
+main ::ng-deep .mat-mdc-card {
+  border-radius: 12px;
+}

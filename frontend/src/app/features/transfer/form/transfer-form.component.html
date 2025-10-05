@@ -1,0 +1,60 @@
+<mat-card>
+  <div class="header">
+    <div>
+      <h1>Transferência de Benefícios</h1>
+      <p>Selecione os benefícios de origem e destino e informe o valor da transferência.</p>
+    </div>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <div class="form-grid">
+      <mat-form-field appearance="outline">
+        <mat-label>Benefício de origem</mat-label>
+        <mat-select formControlName="fromId">
+          <mat-option *ngFor="let b of beneficios" [value]="b.id">
+            {{ b.id }} - {{ b.nome }} ({{ b.valor | currency: 'BRL' }})
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.controls.fromId.hasError('required') && form.controls.fromId.touched">
+          Informe o benefício de origem
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Benefício de destino</mat-label>
+        <mat-select formControlName="toId">
+          <mat-option *ngFor="let b of beneficios" [value]="b.id">
+            {{ b.id }} - {{ b.nome }} ({{ b.valor | currency: 'BRL' }})
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.controls.toId.hasError('required') && form.controls.toId.touched">
+          Informe o benefício de destino
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Valor da transferência</mat-label>
+        <input matInput type="number" min="0.01" step="0.01" formControlName="amount" />
+        <span matTextPrefix>R$&nbsp;</span>
+        <mat-error *ngIf="form.controls.amount.hasError('required') && form.controls.amount.touched">
+          Informe o valor da transferência
+        </mat-error>
+        <mat-error *ngIf="form.controls.amount.hasError('min') && form.controls.amount.touched">
+          O valor deve ser maior que zero
+        </mat-error>
+      </mat-form-field>
+
+      <mat-error class="form-error" *ngIf="form.hasError('sameAccount')">
+        O benefício de origem deve ser diferente do benefício de destino.
+      </mat-error>
+    </div>
+
+    <div class="actions">
+      <button mat-stroked-button type="button" routerLink="/beneficios">Cancelar</button>
+      <button mat-flat-button color="primary" type="submit" [disabled]="saving">
+        <mat-icon>sync_alt</mat-icon>
+        {{ saving ? 'Transferindo...' : 'Transferir' }}
+      </button>
+    </div>
+  </form>
+</mat-card>

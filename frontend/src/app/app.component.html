@@ -1,0 +1,11 @@
+<mat-toolbar color="primary">
+  <span class="brand">Benefícios</span>
+  <span class="spacer"></span>
+  <a mat-button routerLink="/beneficios" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Lista</a>
+  <a mat-button routerLink="/beneficios/new" routerLinkActive="active">Criar</a>
+  <a mat-button routerLink="/beneficios/transfer" routerLinkActive="active">Transferência</a>
+</mat-toolbar>
+
+<main>
+  <router-outlet />
+</main>
