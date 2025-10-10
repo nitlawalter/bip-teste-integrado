@@ -6,6 +6,8 @@ import com.example.backend.dto.TransferRequest;
 import com.example.backend.model.Beneficio;
 import com.example.backend.service.BeneficioService;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +19,7 @@ import java.util.stream.Collectors;
 public class BeneficioController {
 
     private final BeneficioService service;
+    private static final Logger log = LoggerFactory.getLogger(BeneficioController.class);
 
     public BeneficioController(BeneficioService service) {
         this.service = service;
@@ -56,6 +59,7 @@ public class BeneficioController {
     @PostMapping("/transfer")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void transfer(@RequestBody TransferRequest req) {
+        log.info("Transfer requested: from={} to={} amount={}", req.getFromId(), req.getToId(), req.getAmount());
         service.transfer(req.getFromId(), req.getToId(), req.getAmount());
     }
 
