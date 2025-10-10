@@ -1,5 +1,7 @@
 package com.example.backend.dto;
 
+import com.example.backend.model.Beneficio;
+
 import java.math.BigDecimal;
 
 public class BeneficioResponse {
@@ -60,5 +62,14 @@ public class BeneficioResponse {
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
     }
-}
 
+    public static BeneficioResponse from(Beneficio beneficio) {
+        return new BeneficioResponse(
+                beneficio.getId(),
+                beneficio.getNome(),
+                beneficio.getDescricao(),
+                beneficio.getValor(),
+                beneficio.getAtivo()
+        );
+    }
+}

@@ -1,4 +1,4 @@
-package com.example.backend;
+package com.example.backend.controller;
 
 import com.example.backend.dto.BeneficioRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -86,3 +86,4 @@ class BeneficioControllerTest {
                 .andExpect(jsonPath("$.error").exists());
     }
 }
+

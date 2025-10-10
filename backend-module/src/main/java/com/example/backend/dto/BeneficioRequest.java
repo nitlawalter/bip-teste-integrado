@@ -1,5 +1,6 @@
 package com.example.backend.dto;
 
+import com.example.backend.model.Beneficio;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -48,5 +49,13 @@ public class BeneficioRequest {
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
     }
-}
 
+    public Beneficio toEntity() {
+        Beneficio beneficio = new Beneficio();
+        beneficio.setNome(this.getNome());
+        beneficio.setDescricao(this.getDescricao());
+        beneficio.setValor(this.getValor());
+        beneficio.setAtivo(this.getAtivo());
+        return beneficio;
+    }
+}
