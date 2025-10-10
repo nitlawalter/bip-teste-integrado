@@ -38,5 +38,10 @@ ejb:
   beneficio:
     enabled: false
     jndi-name: java:global/beneficio/BeneficioEjbService
-    jndi: {}
+    jndi:
+      java.naming.factory.initial: org.wildfly.naming.client.WildFlyInitialContextFactory
+      java.naming.provider.url: http-remoting://localhost:8080
+      java.naming.security.principal: SEU_USUARIO
+      java.naming.security.credentials: SUA_SENHA
+      org.wildfly.naming.client.ejb.context: true
     
